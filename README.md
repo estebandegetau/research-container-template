@@ -200,7 +200,7 @@ See `.github/workflows/build-test.yml` for details.
 
 ## License
 
-[Choose a license and add it here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Citation
 
