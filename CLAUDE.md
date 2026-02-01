@@ -14,7 +14,7 @@ This is a reproducible research project using R, Python, and Quarto.
 ## Key Technologies
 
 - **R 4.5** with tidyverse, targets, here, renv
-- **Python 3.11** with numpy, pandas, jupyter
+- **Python 3.12** with numpy, pandas, jupyter
 - **Quarto** for scientific publishing
 - **targets** for reproducible pipelines
 

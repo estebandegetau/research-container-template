@@ -1,10 +1,10 @@
 # Research Container Template
-# Base: rocker/r-ver:4.5 with Python 3.11, Quarto, TinyTeX, and Claude Code
+# Base: rocker/r-ver:4.5 with Python 3.12, Quarto, TinyTeX, and Claude Code
 
 FROM rocker/r-ver:4.5
 
 LABEL maintainer="Your Name <your.email@example.com>"
-LABEL description="Reproducible research container with R 4.5, Python 3.11, Quarto, and targets"
+LABEL description="Reproducible research container with R 4.5, Python 3.12, Quarto, and targets"
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # Git and version control
     git \
     git-lfs \
-    # Python 3.11
-    python3.11 \
-    python3.11-venv \
-    python3.11-dev \
+    # Python 3.12 (default in Ubuntu 24.04)
+    python3 \
+    python3-venv \
+    python3-dev \
     python3-pip \
     # Build tools for R packages
     build-essential \
@@ -45,9 +45,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg \
     && rm -rf /var/lib/apt/lists/*
 
-# Set Python 3.11 as default
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1 \
-    && update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+# Set up Python symlink
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 
 # Install Python packages
 RUN pip3 install --no-cache-dir --break-system-packages \

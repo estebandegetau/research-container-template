@@ -9,7 +9,7 @@ This template creates a fully reproducible research environment with:
 | Component | Version | Purpose |
 |-----------|---------|---------|
 | **R** | 4.5 | Statistical computing and graphics |
-| **Python** | 3.11 | General-purpose programming |
+| **Python** | 3.12 | General-purpose programming |
 | **Quarto** | Latest | Scientific publishing |
 | **TinyTeX** | Latest | PDF document generation |
 | **Claude Code** | Latest | AI-assisted development |
