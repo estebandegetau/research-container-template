@@ -18,6 +18,7 @@ This template creates a fully reproducible research environment with:
 
 - **tidyverse** - Data manipulation and visualization
 - **targets** - Pipeline toolkit for reproducible workflows
+- **tarchetypes** - Targets archetypes (Quarto integration, etc.)
 - **here** - Project-relative file paths
 - **renv** - Dependency management
 - **quarto** - Quarto integration for R
@@ -85,7 +86,7 @@ After creating your project from this template, update the following:
 - [ ] **_targets.R**: Define your analysis pipeline
 - [ ] **R/functions.R**: Add your R functions
 - [ ] **docs/report.qmd**: Write your research report
-- [ ] **renv.lock**: Commit `renv.lock` after adding new packages with `renv::snapshot()`
+- [ ] **renv**: Run `renv::init()` then `renv::snapshot()` to track dependencies
 
 ## Using the targets Pipeline
 
@@ -113,7 +114,12 @@ targets::tar_outdated()
 
 ## Managing R Packages with renv
 
+Core packages (tidyverse, targets, etc.) are pre-installed in the container. To track your project's dependencies with renv:
+
 ```r
+# Initialize renv for your project (first time only)
+renv::init()
+
 # Install a new package
 install.packages("packagename")
 
@@ -126,6 +132,12 @@ renv::restore()
 # Check package status
 renv::status()
 ```
+
+**Workflow:**
+1. Core packages are pre-installed at container build time
+2. Run `renv::init()` when you want to start tracking dependencies
+3. After installing new packages, run `renv::snapshot()` to update `renv.lock`
+4. Commit `renv.lock` to version control for reproducibility
 
 ## Rendering Quarto Documents
 
@@ -189,9 +201,10 @@ See `.github/workflows/build-test.yml` for details.
 
 ### R packages won't install
 
-- Check `renv::status()` for issues
-- Try `renv::restore()` to reinstall from lockfile
-- Check system dependencies in Dockerfile
+- Core packages are pre-installed; just use `library()` to load them
+- For new packages: `install.packages("pkg")` then `renv::snapshot()`
+- Check system dependencies in Dockerfile if compilation fails
+- Run `renv::status()` to diagnose renv issues
 
 ### Quarto PDF output fails
 

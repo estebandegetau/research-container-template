@@ -9,14 +9,15 @@ This is a reproducible research project using R, Python, and Quarto.
 - `output/` - Generated outputs (not tracked in git)
 - `docs/` - Quarto documents for reports
 - `_targets.R` - Pipeline definition
-- `renv.lock` - R package dependencies
+- `renv.lock` - R package dependencies (generated via `renv::init()` + `renv::snapshot()`)
 
 ## Key Technologies
 
-- **R 4.5** with tidyverse, targets, here, renv
+- **R 4.5** with tidyverse, targets, tarchetypes, here, renv, quarto
 - **Python 3.12** with numpy, pandas, jupyter
 - **Quarto** for scientific publishing
 - **targets** for reproducible pipelines
+- **Claude Code** for AI-assisted development
 
 ## Coding Conventions
 
@@ -24,7 +25,7 @@ This is a reproducible research project using R, Python, and Quarto.
 - Use tidyverse style guide
 - Use `here::here()` for all file paths
 - Define functions in `R/` directory
-- Use `renv::snapshot()` after adding packages
+- Core packages are pre-installed; use `renv::init()` then `renv::snapshot()` to track dependencies
 
 ### Pipeline (targets)
 - Define targets in `_targets.R`
@@ -48,7 +49,10 @@ targets::tar_visnetwork()
 # Check outdated targets
 targets::tar_outdated()
 
-# Snapshot R packages
+# Initialize renv (first time only)
+renv::init()
+
+# Snapshot R packages after installing new ones
 renv::snapshot()
 ```
 
