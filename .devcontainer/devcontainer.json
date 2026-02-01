@@ -41,7 +41,7 @@
 
   "forwardPorts": [8787, 8888, 4200],
 
-  "postCreateCommand": "R -e 'renv::restore()'",
+  "postCreateCommand": "echo 'Container ready! R packages are pre-installed. Run renv::init() to start tracking dependencies.'",
 
   "remoteUser": "root",
 
