@@ -71,7 +71,7 @@ This template creates a fully reproducible research environment with:
 ├── _targets/            # targets cache (gitignored)
 ├── _targets.R           # Pipeline definition
 ├── Dockerfile           # Container definition
-├── renv.lock            # R package versions
+├── renv/                # renv configuration (generated at build)
 ├── .Rprofile            # R startup configuration
 └── README.md            # This file
 ```
@@ -85,7 +85,7 @@ After creating your project from this template, update the following:
 - [ ] **_targets.R**: Define your analysis pipeline
 - [ ] **R/functions.R**: Add your R functions
 - [ ] **docs/report.qmd**: Write your research report
-- [ ] **renv.lock**: Run `renv::snapshot()` after adding new packages
+- [ ] **renv.lock**: Commit `renv.lock` after adding new packages with `renv::snapshot()`
 
 ## Using the targets Pipeline
 

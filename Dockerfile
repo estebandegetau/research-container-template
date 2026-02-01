@@ -76,23 +76,18 @@ RUN npm install -g @anthropic-ai/claude-code
 # Create renv cache directory
 RUN mkdir -p ${RENV_PATHS_CACHE}
 
-# Install renv
-RUN R -e "install.packages('renv', repos = 'https://packagemanager.posit.co/cran/latest')"
+# Install renv and core R packages
+RUN R -e "install.packages(c('renv', 'tidyverse', 'targets', 'tarchetypes', 'here', 'quarto'), repos = 'https://packagemanager.posit.co/cran/latest')"
 
 # Set working directory
 WORKDIR /workspace
 
-# Copy renv files first for better caching
-COPY renv.lock renv.lock
-COPY .Rprofile .Rprofile
-COPY renv/activate.R renv/activate.R
-COPY renv/settings.json renv/settings.json
-
-# Restore renv packages
-RUN R -e "renv::restore()"
-
-# Copy the rest of the project
+# Copy project files
 COPY . .
+
+# Initialize renv and create lockfile from installed packages
+RUN R -e "renv::init(bare = TRUE)" \
+    && R -e "renv::snapshot()"
 
 # Default command
 CMD ["R"]

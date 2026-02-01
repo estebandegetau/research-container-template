@@ -1,5 +1,7 @@
-# Activate renv for this project
-source("renv/activate.R")
+# Activate renv for this project (if initialized)
+if (file.exists("renv/activate.R")) {
+  source("renv/activate.R")
+}
 
 # Set CRAN mirror
 options(repos = c(CRAN = "https://packagemanager.posit.co/cran/latest"))

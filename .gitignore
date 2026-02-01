@@ -10,6 +10,7 @@ renv/library/
 renv/staging/
 renv/python/
 renv/sandbox/
+renv/activate.R
 
 # targets cache (large, reproducible from code)
 _targets/
