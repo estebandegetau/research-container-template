@@ -62,8 +62,11 @@ Thumbs.db
 .env.local
 *.env
 
-# Claude Code
-.claude/
+# Claude Code (keep skills and agents tracked; ignore user-specific state)
+.claude/*
+!.claude/skills/
+!.claude/agents/
+!.claude/settings.json
 
 # Temporary files
 *.tmp
